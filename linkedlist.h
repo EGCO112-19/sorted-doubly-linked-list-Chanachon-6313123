@@ -2,17 +2,22 @@
 struct Node {                                      
    int data; // each listNode contains a character 
    struct Node *nextPtr; // pointer to next node
-}; // end structure listNode                        
-// prototypes
-
-int deletes( LLPtr *sPtr, int value );
-int isEmpty( LLPtr sPtr );
-void insert( LLPtr *sPtr, int value );
-void printList( LLPtr currentPtr );
-void instructions( void );
+   struct Node *prevPtr;
+}; // end structure listNode                   
 
 typedef struct Node LLnode; // synonym for struct listNode
-typedef LLnode *LLPtr; // synonym for ListNode*
+typedef LLnode* LLPtr; // synonym for ListNode*
+
+// prototypes
+
+int deletes( LLPtr *sPtr, int value );//mod
+int isEmpty( LLPtr sPtr );
+void insert( LLPtr *sPtr, int value );//mod
+void printList( LLPtr currentPtr );
+void printListR( LLPtr currentPtr );//add
+void instructions( void );
+
+
 
 
 // display program instructions to user
@@ -122,3 +127,22 @@ void printList( LLPtr currentPtr )
       puts( "NULL\n" );
    } // end else
 } // end function printList
+
+void printListR( LLPtr currentPtr ) //add 
+{
+   // if list is empty
+   if ( isEmpty( currentPtr ) ) {
+      puts( "List is empty.\n" );
+   } // end if
+   else { 
+      puts( "The list is:" );
+
+      // while not the end of the list
+      while ( currentPtr == NULL ) { 
+         printf( " --> %d ", currentPtr->data );
+         currentPtr = currentPtr->nextPtr;   
+      } // end while
+
+      puts( "NULL\n" );
+   } // end else
+}
